@@ -1,0 +1,14 @@
+{
+  "name": "monolang",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Zac Crumpton <c-zac.crumpton@charter.com>",
+  "license": "MIT",
+  "dependencies": {
+    "wabt": "^1.0.28"
+  },
+  "scripts": {
+    "compile": "node index.js",
+    "start": "node run.js"
+  }
+}

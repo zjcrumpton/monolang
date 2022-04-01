@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+  // const magicModuleHeader = [0x00, 0x61, 0x73, 0x6d];
+  // const moduleVersion = [0x01, 0x00, 0x00, 0x00];
+  // const code = [0x20, 0, 0x20, 1, 0x92, 0x43, 50, 0x10, 0, 0x0b];
+
+  // const emitter = () =>
+  //   Uint8Array.from([
+  //     ...magicModuleHeader,
+  //     ...moduleVersion,
+  //     ...code,
+  //   ]);
+
+
+  async function startWasm() {
+    const memory = new  WebAssembly.Memory({initial:1});
+    const wasm = await fetch('main.wasm')
+    console.log(wasm)
+    const results = await WebAssembly.instantiateStreaming(wasm, {
+        console: {
+          log:  console.log
+        },
+        js : {
+          mem:  memory
+        }
+      })
+    console.log('made it here', results)
+  }
+</script>
+<body>
+  <button onclick="startWasm()">Run WASM</button>
+</body>
+</html>

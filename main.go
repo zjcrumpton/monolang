@@ -1,14 +1,35 @@
 package main
 
 import (
-	"fmt"
-	"monolang/tokenizer"
+	"monolang/emitter"
+	"os"
 )
 
 func main() {
-	program := "print 52 print 68 invalid value print 20 print 23.1"
-	tokens := tokenizer.Tokenize(program)
+	// content, err := ioutil.ReadFile("main.mono")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	fmt.Println(program)
-	fmt.Println(tokens)
+	// program := string(content)
+
+	// tokens := tokenizer.Tokenize(program)
+	// ast := monoparser.Parse(tokens)
+	// code := emitter.GenerateCode(ast)
+
+	// fmt.Println(program)
+	// fmt.Printf("%+v\n", tokens)
+	// fmt.Printf("%+v\n", ast)
+	// fmt.Printf("%+v\n", code)
+
+	f, err := os.Create("./main.wasm")
+	if err != nil {
+		panic("file error")
+	}
+	defer f.Close()
+
+	m := emitter.NewModule()
+	code := m.ToByteCode()
+
+	f.Write(code)
 }
