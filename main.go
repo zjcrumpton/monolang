@@ -54,17 +54,8 @@ func main() {
 	// CODE SECTION
 	codeSection := emitter.NewSection(emitter.CODE_SECTION)
 	codeSection.Size = 0x07
-	codeSection.AddContent([]byte{0x01, 0x05, 0x00, opcodes.I32Const, byte(63), 0x0f, 0x0b})
+	codeSection.AddContent([]byte{0x01, 0x05, 0x00, opcodes.I32Const, 40, 0x0f, 0x0b})
 	m.AddSection(codeSection)
-
-	// // IMPORT SECTION
-	// importSection := emitter.NewSection(emitter.IMPORT_SECTION)
-	// importSection.AddImports("console", "log", 0)
-	// m.AddSection(importSection)
-
-	// imp := emitter.NewSection(emitter.IMPORT_SECTION, 10)
-	// imp.AddContent([]byte{'c', 'o', 'n', 's', 'o', 'l', 'e', ' ', 'l', 'o', 'g'})
-	// m.AddSection(imp)
 
 	code := m.ToByteCode()
 	fmt.Println(code)

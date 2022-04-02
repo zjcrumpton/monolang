@@ -10,6 +10,7 @@ const (
 	Call         = 0x10
 	GetLocal     = 0x20
 	SetLocal     = 0x21
+	I64Const     = 0x42 // Push a 64 bit integer to the stack
 	I32Store8    = 0x3a
 	I32Const     = 0x41 // Push a 32 bit integer to the stack
 	F32Const     = 0x43 // Push a 32 bit float to the stack
